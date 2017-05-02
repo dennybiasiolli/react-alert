@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import AlertContainer from '../index';
+import AlertContainer from '../src';
 
 export default class App extends React.Component {
   constructor(props) {

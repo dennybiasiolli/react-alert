@@ -4,7 +4,7 @@ const webpackUMDExternal = require('webpack-umd-external');
 
 config.entry = {
   alert: [
-    path.resolve(__dirname, '../index.js'),
+    path.resolve(__dirname, '../src'),
   ]
 };
 

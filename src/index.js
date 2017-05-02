@@ -1,8 +1,8 @@
 //load styles
-import './src/assets/styles/alert';
+import './assets/styles/alert';
 //load js
 import React from 'react';
-import { AlertContainer } from './src/components/AlertContainer';
+import { AlertContainer } from './components/AlertContainer';
 
 export { AlertContainer };
 export default AlertContainer;
