@@ -8,7 +8,7 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel-loader',
     }, {
-      test: /\.styl$/,
+      test: /\.css$/,
       exclude: /node_modules/,
       loader: [
         'style-loader',
@@ -22,8 +22,7 @@ module.exports = {
               ];
             }
           }
-        },
-        'stylus-loader'
+        }
       ]
     }, {
       test: /\.(jpg|png|gif)$/,
