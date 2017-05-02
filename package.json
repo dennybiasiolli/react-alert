@@ -44,7 +44,7 @@
     "webpack-umd-external": "^1.0.2"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config webpack/build.config.js",
     "test": "jest"
   },
   "jest": {
