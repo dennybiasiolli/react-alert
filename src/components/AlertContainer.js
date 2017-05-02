@@ -5,7 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { AlertMessage } from './AlertMessage';
 
 export class AlertContainer extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     global.reactAlertEvents = new EventEmitter();
     this.state = {
@@ -21,7 +21,7 @@ export class AlertContainer extends React.Component {
    * @param  {Object} options 
    * @return {void}         
    */
-  success(message, options = {}){
+  success(message, options = {}) {
     options.type = 'success';
     this.show(message, options);
   }
@@ -31,7 +31,7 @@ export class AlertContainer extends React.Component {
    * @param  {Object} options 
    * @return {void}
    */
-  error(message, options = {}){
+  error(message, options = {}) {
     options.type = 'error';
     this.show(message, options);
   }
@@ -41,7 +41,7 @@ export class AlertContainer extends React.Component {
    * @param  {Object} options
    * @return {void}
    */
-  info(message, options = {}){
+  info(message, options = {}) {
     options.type = 'info';
     this.show(message, options);
   }
@@ -51,27 +51,27 @@ export class AlertContainer extends React.Component {
    * @param  {Object} options
    * @return {void}
    */
-  show(message, options = {}){
+  show(message, options = {}) {
     let alert = {};
     alert.message = message;
     alert = Object.assign(alert, options);
-    this.setState({alerts: this._addAlert(alert)});
+    this.setState({ alerts: this._addAlert(alert) });
   }
   /**
    * Remove all tasks from the page
    * @return {void}
    */
-  removeAll(){
-    this.setState({alerts: []});
+  removeAll() {
+    this.setState({ alerts: [] });
   }
   /**
    * Add an alert
    * @param {Object} alert
    */
-  _addAlert(alert){
+  _addAlert(alert) {
     alert.uniqueKey = this._genUniqueKey();
     alert.style = this.theme;
-    if(!alert.hasOwnProperty('time')){
+    if (!alert.hasOwnProperty('time')) {
       alert.time = this.props.time;
     };
     alert.closeIconClass = 'close-' + this.props.theme;
@@ -82,7 +82,7 @@ export class AlertContainer extends React.Component {
    * Generate a key
    * @return {string}
    */
-  _genUniqueKey(){
+  _genUniqueKey() {
     return new Date().getTime().toString() + Math.random().toString(36).substr(2, 5);
   }
   /**
@@ -90,7 +90,7 @@ export class AlertContainer extends React.Component {
    * @param  {AlertMessage} alert
    * @return {void}
    */
-  _removeAlert(alert){
+  _removeAlert(alert) {
     return this.state.alerts.filter((a) => {
       return a.uniqueKey != alert.props.uniqueKey;
     });
@@ -99,17 +99,17 @@ export class AlertContainer extends React.Component {
    * Listen to alert events
    * @return {void}
    */
-  _eventListners(){
+  _eventListners() {
     reactAlertEvents.on('ALERT.REMOVE', (alert) => {
-      this.setState({alerts: this._removeAlert(alert)});
+      this.setState({ alerts: this._removeAlert(alert) });
     });
   }
   /**
    * Set the alert position on the page
    */
-  _setStyle(){
+  _setStyle() {
     let position = {};
-    switch(this.props.position){
+    switch (this.props.position) {
       case 'top left':
         position = {
           top: 0,
@@ -155,9 +155,9 @@ export class AlertContainer extends React.Component {
   /**
    * Set the style of the alert based on the chosen theme
    */
-  _setTheme(){
+  _setTheme() {
     let theme = {};
-    switch(this.props.theme){
+    switch (this.props.theme) {
       case 'light':
         theme = {
           alert: {
@@ -185,17 +185,17 @@ export class AlertContainer extends React.Component {
     return theme;
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.style = this._setStyle();
     this.theme = this._setTheme();
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div style={this.style} className="react-alerts">
-        <ReactCSSTransitionGroup 
-          transitionName={this.props.transition} 
-          transitionEnterTimeout={250} 
+        <ReactCSSTransitionGroup
+          transitionName={this.props.transition}
+          transitionEnterTimeout={250}
           transitionLeaveTimeout={250}>
           {this.state.alerts.map((alert, index) => {
             return <AlertMessage key={alert.uniqueKey} {...alert} />
@@ -217,8 +217,8 @@ AlertContainer.defaultProps = {
 AlertContainer.propTypes = {
   offset: PropTypes.number,
   position: PropTypes.oneOf([
-    'bottom left', 
-    'bottom right', 
+    'bottom left',
+    'bottom right',
     'top right',
     'top left',
   ]),

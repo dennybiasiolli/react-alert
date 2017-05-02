@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 
 export class AlertMessage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       closeButtonStyle: {}
@@ -14,19 +14,19 @@ export class AlertMessage extends React.Component {
    * Handle the close button click
    * @return {void} 
    */
-  _handleCloseClick(){
+  _handleCloseClick() {
     this._removeSelf();
   }
   /**
    * Include the given icon or use the default one
    * @return {React.Component}
    */
-  _showIcon(){
+  _showIcon() {
     let icon = '';
-    if(this.props.icon){
+    if (this.props.icon) {
       icon = this.props.icon;
     }
-    else{
+    else {
       icon = <div className={this.props.type + '-icon'} />;
     }
 
@@ -36,7 +36,7 @@ export class AlertMessage extends React.Component {
    * Remove the alert after the given time
    * @return {void} 
    */
-  _countdown(){
+  _countdown() {
     setTimeout(() => {
       this._removeSelf();
     }, this.props.time);
@@ -45,11 +45,11 @@ export class AlertMessage extends React.Component {
    * Emit a event to AlertContainer remove this alert from page
    * @return {void}
    */
-  _removeSelf(){
+  _removeSelf() {
     reactAlertEvents.emit('ALERT.REMOVE', this);
   }
-  
-  componentDidMount(){
+
+  componentDidMount() {
     this.domNode = ReactDOM.findDOMNode(this);
     this.setState({
       closeButtonStyle: {
@@ -59,13 +59,13 @@ export class AlertMessage extends React.Component {
       }
     });
 
-    if(this.props.time > 0){
+    if (this.props.time > 0) {
       this._countdown();
     }
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div style={this.props.style.alert} className={classnames('alert', this.props.type)}>
         <div className="content icon">
           {this._showIcon.bind(this)()}
@@ -79,7 +79,7 @@ export class AlertMessage extends React.Component {
       </div>
     );
   }
-} 
+}
 
 AlertMessage.defaultProps = {
   icon: '',

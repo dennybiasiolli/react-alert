@@ -1,12 +1,12 @@
-jest.dontMock('../dev/components/AlertContainer');
-jest.dontMock('../dev/components/AlertMessage');
+jest.dontMock('../src/components/AlertContainer');
+jest.dontMock('../src/components/AlertMessage');
 jest.dontMock('events');
 jest.dontMock('path');
 var path = require('path');
 var EventEmitter = require('events');
 var TestUtils = require('react-dom/test-utils');
 var React = require('react');
-import { AlertContainer } from '../dev/components/AlertContainer';
+import { AlertContainer } from '../src/components/AlertContainer';
 
 const shallowRenderer = require('react-test-renderer/shallow').createRenderer();
 
@@ -14,7 +14,7 @@ describe('AlertContainer', () => {
   beforeEach(() =>{
     global.events = new EventEmitter();
     global.paths = {
-      img: path.join(__dirname, 'dev/assets/img/')
+      img: path.join(__dirname, 'src/assets/img/')
     };
   });
   
