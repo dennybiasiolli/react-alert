@@ -41,10 +41,12 @@
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.5.6",
     "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5",
     "webpack-umd-external": "^1.0.2"
   },
   "scripts": {
     "build": "webpack --config webpack/build.config.js",
+    "start": "webpack-dev-server --config webpack/dev.config.js",
     "test": "jest"
   },
   "jest": {
